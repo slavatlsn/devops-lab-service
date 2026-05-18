@@ -1,0 +1,17 @@
+name: Auto Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Go to project
+        run: |
+          cd home/slava/devops-lab-service
+          git pull
+          docker compose up -d --build
