@@ -1,0 +1,22 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  docker-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: devops-lab-service
+        uses: actions/checkout@v4
+
+      - name: container up
+        run: |
+          sudo docker compose up --build -d
+
+      - name: container down
+        run: sudo docker compose down
